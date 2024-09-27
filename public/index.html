@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Cars</title>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>Add the car's info</h2>        
+            <form id="addCarForm">
+                <label for="licensePlate">License plate</label>
+                <input type="text" name="licensePlate" id="licensePlate" required>
+
+                <label for="maker">Maker</label>
+                <input type="text" name="maker" id="maker">
+
+                <label for="model">Model</label>
+                <input type="text" name="model" id="model">
+
+                <label for="year">Year</label>
+                <input type="number" step="1" name="year" id="year">
+
+                <label for="currentOwner">Current owner</label>
+                <input type="text" name="currentOwner" id="currentOwner">
+
+                <label for="price">Price</label>
+                <input type="number" step="0.01" name="price" id="price">
+
+                <label for="color">Color</label>
+                <input type="color" name="color" id="color">
+                <div>
+                    <button type="reset">Reset</button> 
+                    <button type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="box">
+            <h2>Search</h2>
+            <form id="searchCarForm">
+                <label for="licensePlateSearch">Search by license plate</label>
+                <input type="text" name="licensePlateSearch" id="licensePlateSearch">
+                <button type="submit">Search</button>
+            </form>
+            <div class="box hidden" id="searchResult">
+                <h2>Search result:</h2>
+                <div>
+                    <span id="foundCar"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" id="tableBox">
+            <h2>Table of cars</h2>
+            <label for="carsTable">Car's details</label> 
+            <table  id="carsTable" >
+                <tr>
+                    <th>License plate</th>
+                    <th>Maker</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Current owner</th>
+                    <th>Price</th>
+                    <th>Discounted price</th>
+                    <th>Color</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
