@@ -79,7 +79,10 @@ function addCar(event) {
 
         const newCar = new Car(licensePlate, maker, model, year, currentOwner, price, discountedPrice, color); //create new object
         carsList.push(newCar); //push the object to carList array
-        displayTable(newCar);//evoke function whick takes the newCar and inserts it to the table's fields
+
+        //displayTable(newCar);//evoke function whick takes the newCar and inserts it to the table's fields
+
+        createTable();
 
     } catch (error) {
         alert(`${error}`);
@@ -108,6 +111,30 @@ function displayTable(car) {
         }
     });
 }
+
+//this function uses cars array to create the table
+function createTable() {
+    let table = document.querySelector('#carsTable');//get the table
+    let row = table.insertRow(-1);//add a raw in th bottom of the table
+    carsList.forEach((car) => {
+        const values = [car.licensePlate, car.maker, car.model, car.year, car.currentOwner, car.price, car.discountedPrice, car.color];
+
+        values.forEach((value, index) => {
+            let cell = row.insertCell(index);
+            cell.innerText = value;
+            if (index === values.length - 1) { //it's the last cell it a row
+                // Check the color's luminance to adjust text color. Here I use an external library "tinycolor" to get a value of how bright the collor is. And use it to switch font collor between black and white.
+                cell.style.backgroundColor = car.color;// use the cars color to the cell
+                if (tinycolor(car.color).getLuminance() < 0.5) {
+                    cell.style.color = '#FFFFFF';//use white font if the color is dark
+                } else {
+                    cell.style.color = '#000';//use black font if the color is light
+                }
+            }
+        });
+    });
+}
+
 
 //this function filters through the array and and returns the object keys by license plate match
 function searchCar(event) {
