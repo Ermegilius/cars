@@ -16,22 +16,22 @@
                 <input type="text" name="licensePlate" id="licensePlate" required>
 
                 <label for="maker">Maker</label>
-                <input type="text" name="maker" id="maker">
+                <input type="text" name="maker" id="maker" required>
 
                 <label for="model">Model</label>
-                <input type="text" name="model" id="model">
+                <input type="text" name="model" id="model" required>
 
                 <label for="year">Year</label>
-                <input type="number" step="1" name="year" id="year">
+                <input type="number" step="1" name="year" id="year" required>
 
                 <label for="currentOwner">Current owner</label>
-                <input type="text" name="currentOwner" id="currentOwner">
+                <input type="text" name="currentOwner" id="currentOwner" required>
 
                 <label for="price">Price</label>
-                <input type="number" step="0.01" name="price" id="price">
+                <input type="number" step="0.01" name="price" id="price" required>
 
                 <label for="color">Color</label>
-                <input type="color" name="color" id="color">
+                <input type="color" name="color" id="color" required>
                 <div>
                     <button type="reset">Reset</button> 
                     <button type="submit">Add</button>
@@ -46,7 +46,7 @@
                 <input type="text" name="licensePlateSearch" id="licensePlateSearch">
                 <button type="submit">Search</button>
             </form>
-            <div class="box hidden" id="searchResult">
+            <div class="hidden" id="searchResult">
                 <h2>Search result:</h2>
                 <div>
                     <span id="foundCar"></span>
@@ -64,8 +64,8 @@
                     <th>Model</th>
                     <th>Year</th>
                     <th>Current owner</th>
-                    <th>Price</th>
-                    <th>Discounted price</th>
+                    <th>Price, €</th>
+                    <th>Discounted price, €</th>
                     <th>Color</th>
                     <th>Delete</th>
                 </tr>

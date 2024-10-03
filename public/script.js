@@ -17,7 +17,7 @@ class Car {
         this.model = model;
         this.year = year;
         this.currentOwner = currentOwner;
-        this.price = price;
+        this.price = parseFloat(price);
         this.discountedPrice = discountedPrice;
         this.color = color;
     }
@@ -38,7 +38,7 @@ function discountPrice(price) {
     return (price * DISCOUNT_RATE).toFixed(2);
 }
 
-//this function takes user's input and creates a new object with Car prototype
+//this function takes user's input and creates a new object with Car prototype and saves it in local storage
 function addCar(event) {
     event.preventDefault();//do not drop the table on submit
 
@@ -53,7 +53,7 @@ function addCar(event) {
     let discountedPrice = "-";//no discount by default
     const color = document.querySelector('#color').value.trim();
 
-    console.log(licensePlate, maker, model, year, currentOwner, price, discountedPrice, color);
+    console.log(`Added new car: ${licensePlate}, ${maker}, ${model}, ${year}, ${currentOwner}, ${price}, ${discountedPrice}, ${color}`);
 
     //Error Handling for Input Validation
     try {
@@ -90,7 +90,9 @@ function addCar(event) {
         const newCar = new Car(licensePlate, maker, model, year, currentOwner, price, discountedPrice, color); //create new object
         carsList.push(newCar); //push the object to carList array
 
-        //displayTable(newCar);//evoke function whick takes the newCar and inserts it to the table's fields
+        localStorage.setItem('carsList', JSON.stringify(carsList));//store carsList in localStorage as JSON
+
+        //createTable(newCar);//evoke function whick takes the newCar and inserts it to the table's fields
         displayMessage("Car added successfully!");
         createTable();
 
@@ -102,6 +104,18 @@ function addCar(event) {
     }
     searchResult.classList.add('hidden');//hide search result div
 }
+
+//this function creates the table using localStorage. We use it onload for the entire page.
+const loadCarsFromLocalStorage = () => {
+    const storedCars = localStorage.getItem('carsList');
+    if (storedCars) {
+        const parsedCars = JSON.parse(storedCars);
+        parsedCars.forEach(carData => {
+            carsList.push(new Car(carData.licensePlate.toUpperCase(), carData.maker, carData.model, carData.year, carData.currentOwner, carData.price, carData.discountedPrice, carData.color));
+        });
+        createTable();
+    }
+};
 
 //this function uses cars array to create the table
 function createTable() {
@@ -115,7 +129,7 @@ function createTable() {
     // Create a row for each car
     carsList.forEach((car, index) => {
         let row = table.insertRow(-1);
-        const values = [car.licensePlate, car.maker, car.model, car.year, car.currentOwner, car.price, car.discountedPrice, car.color];
+        const values = [car.licensePlate, car.maker, car.model, car.year, car.currentOwner, car.price.toFixed(2), car.discountedPrice, car.color];
 
         values.forEach((value, i) => {
             let cell = row.insertCell(i);
@@ -140,6 +154,13 @@ function createTable() {
     });
 }
 
+//deletes a car from the array using it's index.
+const deleteCar = (index) => {
+    carsList.splice(index, 1);
+    localStorage.setItem('carsList', JSON.stringify(carsList));
+    createTable();
+    displayMessage("Car deleted successfully!");
+};
 
 //this function filters through the array and and returns the object keys by license plate match
 function searchCar(event) {
@@ -183,3 +204,4 @@ function searchCar(event) {
 
 addCarForm.addEventListener('submit', addCar);
 searchCarForm.addEventListener('submit', searchCar);
+window.addEventListener('load', loadCarsFromLocalStorage);
