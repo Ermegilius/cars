@@ -38,6 +38,21 @@ button:hover{
     color: #525252;
 } 
 
+button.delete {
+    background-color: transparent;
+    color: #0a5c7c;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    margin: 0;
+  }
+  
+  button.delete:hover {
+    color: #02485e;
+  }
+
 input {
     font-size: 1.2rem;
     margin: .2rem;
@@ -75,6 +90,33 @@ td, th {
     line-height: .5;
 }
 
+
 .hidden {
     display: none;
 }
+
+#message {
+    margin-top: 1rem;
+    position: fixed;
+    top:1rem;
+    right:1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+  }
+
+#message.success {
+    background-color: #008929;
+    color: white;
+    visibility: visible;
+  }
+  
+  #message.error {
+    background-color: #ee2b1e;
+    color: white;
+    visibility: visible;
+  }

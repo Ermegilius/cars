@@ -23,6 +23,16 @@ class Car {
     }
 }
 
+const displayMessage = (message, type = "success") => {//success by default (if not defined in the function). 
+    const messageElement = document.querySelector("#message"); //get div, which appears after any operation to confirm the result
+    messageElement.textContent = message;
+    messageElement.className = type;
+    setTimeout(() => {
+        messageElement.textContent = "";
+        messageElement.className = "";
+    }, 3000);//in 3sec the message dissapears
+};
+
 function discountPrice(price) {
     const DISCOUNT_RATE = 0.85;
     return (price * DISCOUNT_RATE).toFixed(2);
@@ -81,48 +91,37 @@ function addCar(event) {
         carsList.push(newCar); //push the object to carList array
 
         //displayTable(newCar);//evoke function whick takes the newCar and inserts it to the table's fields
-
+        displayMessage("Car added successfully!");
         createTable();
 
+
     } catch (error) {
-        alert(`${error}`);
+        displayMessage(error.message, "error");
     } finally {
         console.log('License plate check was executed');
     }
     searchResult.classList.add('hidden');//hide search result div
 }
 
-//this function uses created object to add lines to the table
-function displayTable(car) {
-    let table = document.querySelector('#carsTable');//get the table
-    let row = table.insertRow(-1);//add a raw in th bottom of the table
-    const values = [car.licensePlate, car.maker, car.model, car.year, car.currentOwner, car.price, car.discountedPrice, car.color];
-    values.forEach((value, index) => {
-        let cell = row.insertCell(index);
-        cell.innerText = value;
-        if (index === values.length - 1) { //it's the last cell it a row
-            // Check the color's luminance to adjust text color. Here I use an external library "tinycolor" to get a value of how bright the collor is. And use it to switch font collor between black and white.
-            cell.style.backgroundColor = car.color;// use the cars color to the cell
-            if (tinycolor(car.color).getLuminance() < 0.5) {
-                cell.style.color = '#FFFFFF';//use white font if the color is dark
-            } else {
-                cell.style.color = '#000';//use black font if the color is light
-            }
-        }
-    });
-}
-
 //this function uses cars array to create the table
 function createTable() {
     let table = document.querySelector('#carsTable');//get the table
-    let row = table.insertRow(-1);//add a raw in th bottom of the table
-    carsList.forEach((car) => {
+
+    // Clear existing rows except for the header (first row)
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+
+    // Create a row for each car
+    carsList.forEach((car, index) => {
+        let row = table.insertRow(-1);
         const values = [car.licensePlate, car.maker, car.model, car.year, car.currentOwner, car.price, car.discountedPrice, car.color];
 
-        values.forEach((value, index) => {
-            let cell = row.insertCell(index);
-            cell.innerText = value;
-            if (index === values.length - 1) { //it's the last cell it a row
+        values.forEach((value, i) => {
+            let cell = row.insertCell(i);
+            cell.innerText = value ?? 'N/A'; //in case of some frontend fail field receives "N/A value". In general these fields are required, so they can't be N/A.
+
+            if (value === values.at(-1)) { //it's the last cell it a row
                 // Check the color's luminance to adjust text color. Here I use an external library "tinycolor" to get a value of how bright the collor is. And use it to switch font collor between black and white.
                 cell.style.backgroundColor = car.color;// use the cars color to the cell
                 if (tinycolor(car.color).getLuminance() < 0.5) {
@@ -132,6 +131,12 @@ function createTable() {
                 }
             }
         });
+        //creates "delete" button in the last field of the table. This button calls deleteCar function.
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.classList.add("delete");
+        deleteButton.addEventListener("click", () => deleteCar(index));
+        row.insertCell(-1).appendChild(deleteButton);
     });
 }
 
