@@ -1,5 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333333;
+}
+
+h1 {
+    font-size: 32px; 
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 19px;
+}
+
 body {
     font-size: 1rem;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #f7f7f7;
 }
 
 .container{
@@ -8,14 +33,20 @@ body {
     flex-wrap: wrap;
     padding: 0 1rem;
     width: 100vw;
-}
+}   
 
 .box {
     display: flex;
     flex-direction: column;
-    padding: 0 1rem;
-    min-width: 10vw;
-    margin: 0 .5vw;
+    padding: 1rem;
+    margin: .5vw ;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #a2a2a2;
+}
+
+.box button {
+    align-self: left;
+    justify-self: space-evenly;
 }
 
 form {
@@ -24,58 +55,73 @@ form {
 }
 
 button {
-    font-size: 1.5rem;
-    width: 7rem;
-    margin: .5rem 0.5rem 0 0;
-    padding: .5rem;
+    font-size: 1rem;
+    width: 5rem;
+    margin: .8rem 0.5rem 0 0;
+    padding: .3rem;
     background-color: #a2a2a2;
-    border-radius: .5rem;
+    border-radius: .9rem;
     color: #FFFFFF;
     border: none;
+    box-shadow: 0 0 5px #a2a2a2;
 }
 
 button:hover{
     background-color: #e6e6e6;
     color: #525252;
+    outline: 2px solid #4078C0;
+
 } 
 
 button.delete {
     background-color: transparent;
-    color: #0a5c7c;
+    color: #4078C0;
     border: none;
     cursor: pointer;
     padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     transition: color 0.3s ease;
     margin: 0;
-  }
+    box-shadow: none;
+    outline: none;
+}
   
 button.delete:hover {
-    color: #02485e;
-  }
+    color: #FF0000;
+}
 
 input {
     font-size: 1rem;
-    margin: .2rem;
+    margin-top: .2rem;
     height: 1.2rem;
     width: 70%;
-    border-radius: 10px;
+    border: solid .5px #a2a2a2;
+    border-radius: 5px;
     padding: 0.3rem;
 }
 
+input:active, input:focus {
+    outline: 2px solid #4078C0;;
+    background-color: #ffffff;
+  }
+
 label {
-    font-weight: bold;
+    margin-top: .3rem;
+    font-weight: 100;
+    font-size: .8rem;
 }
 
 #carsTable {
     border-collapse: collapse;
-    font-size: 1rem;
+    font-size: .1rem;
+    font-weight: 100;
 }
  
 td, th {
     border: 1px solid #dddddd;
     text-align: center;
     padding: 8px;
+    font-size: .7rem;
 }
   
   tr:nth-child(even) {
