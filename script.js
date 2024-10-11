@@ -204,9 +204,15 @@ function searchCar(event) {
     }
 }
 
+function themeToogle() {
+    let pagesBody = document.body;
+    pagesBody.classList.toggle("dark-mode");
+}
+
 //get current year for copyright in the footer:
 document.getElementById("thisYear").innerText = new Date().getFullYear();
 
 addCarForm.addEventListener('submit', addCar);
 searchCarForm.addEventListener('submit', searchCar);
 window.addEventListener('load', loadCarsFromLocalStorage);
+document.querySelector('#themeToogle').addEventListener('click', themeToogle);
