@@ -81,11 +81,10 @@ button {
     box-shadow: 0 0 5px #a2a2a2;
 }
 
-button:hover{
+button:hover {
     background-color: #e6e6e6;
     color: #525252;
     outline: 2px solid #4078C0;
-
 } 
 
 button.delete {
@@ -118,7 +117,7 @@ input {
 input:active, input:focus {
     outline: 2px solid #4078C0;;
     background-color: #ffffff;
-  }
+}
 
 label {
     margin-top: .3rem;
@@ -139,7 +138,7 @@ td, th {
     font-size: .7rem;
 }
   
-  tr:nth-child(even) {
+tr:nth-child(even) {
     background-color: #dddddd;
 }
 
@@ -151,6 +150,21 @@ td, th {
     font-size: 1rem;
     white-space: pre-line;
     line-height: 1rem;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 1rem;
+    width: 100%;
+}
+
+footer p, footer span {
+    font-weight: 100;
+    font-size: .8rem;
+    width: 100vw;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .hidden {

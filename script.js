@@ -1,4 +1,6 @@
 'use strict';
+
+
 const carsList = [];
 const searchResult = document.querySelector('#searchResult');//gets the form of search result, use it to hide/unhide later (hidden by default)
 const addCarForm = document.querySelector('#addCarForm')//get form with all inputs to add a car
@@ -201,6 +203,9 @@ function searchCar(event) {
         console.log('License plate check was executed');
     }
 }
+
+//get current year for copyright in the footer:
+document.getElementById("thisYear").innerText = new Date().getFullYear();
 
 addCarForm.addEventListener('submit', addCar);
 searchCarForm.addEventListener('submit', searchCar);
