@@ -35,6 +35,10 @@ body {
 header {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    align-items: end;
+    padding-right: 1rem;
+
 }
 
 .container{
@@ -243,7 +247,6 @@ button.delete {
 }
 
 #themeToogle {
-
     object-fit: contain;
     height: 25px;
     border-radius: 50%;
@@ -251,7 +254,6 @@ button.delete {
     transition: transform 2s;
     margin: .1rem;
     opacity: .7;
-
 }
 
 .toogle-container {
