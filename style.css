@@ -29,6 +29,12 @@ body {
     font-weight: 400;
     font-style: normal;
     background-color: #f7f7f7;
+    margin: .5rem;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
 }
 
 .container{
@@ -234,4 +240,23 @@ footer p, footer span {
 
 button.delete {
     color: #67a5f5;
+}
+
+#themeToogle {
+
+    object-fit: contain;
+    height: 25px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #a2a2a2;
+    transition: transform 2s;
+    margin: .1rem;
+    opacity: .7;
+
+}
+
+.toogle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

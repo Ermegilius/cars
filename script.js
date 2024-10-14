@@ -204,9 +204,14 @@ function searchCar(event) {
     }
 }
 
+
+let isRotated = false;
 function themeToogle() {
     let pagesBody = document.body;
     pagesBody.classList.toggle("dark-mode");
+    isRotated = !isRotated;
+    let themeToogler = document.querySelector('#themeToogle');
+    themeToogler.style.transform = isRotated ? "rotate(180deg)" : "rotate(0deg)";
 }
 
 //get current year for copyright in the footer:
